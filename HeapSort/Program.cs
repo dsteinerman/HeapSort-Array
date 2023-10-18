@@ -15,7 +15,7 @@ public class HeapSort
             Console.Write(i + " ");
         }
 
-        sort(array);
+        Sort<int>(array);
 
         Console.WriteLine("\nSorted Array ");
 
@@ -25,10 +25,10 @@ public class HeapSort
         }
     }
 
-    private static void sort(int[] array)
+    private static void Sort<T>(T[] array) where T : IComparable<T>
     {
         int length = array.Length;
-        int temp;
+        T temp;
 
         for (int i = length/2; i >= 0; i--)
         {
@@ -45,24 +45,24 @@ public class HeapSort
         }
     }
 
-     static void Heapify(int[] array, int length, int parrent)
+     static void Heapify<T>(T[] array, int length, int parrent) where T : IComparable<T>
     {
        int max = parrent;
        int leftChild = 2 * parrent + 1;
        int rightChild = 2 * parrent + 2;
 
-        if (leftChild <= length && array[leftChild] > array[max])
+        if (leftChild <= length && array[leftChild].CompareTo(array[max]) > 0)
         {
             max = leftChild;
         }
-        if (rightChild <= length && array[rightChild] > array[max])
+        if (rightChild <= length && array[rightChild].CompareTo(array[max]) > 0)
         {
             max = rightChild;
         }
 
         if(max != parrent) 
         {
-            int temp = array[parrent];
+            T temp = array[parrent];
             array[parrent] = array[max];
             array[max] = temp;
        
